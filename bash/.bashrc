@@ -12,19 +12,19 @@ alias src='source ~/.bashrc'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-alias dot-x='cd ~/.dotfiles-wayland/ && ranger'
-alias nvm='cd ~/.dotfiles-wayland/AeroNvim/.config/nvim/ && ranger'
+alias dot-w='cd ~/.dotfiles-wayland/ && ranger'
 alias hype='cd ~/.config/hypr/ && ranger'
 alias elko='cd ~/.config/eww/ && ranger'
-alias nvcfg='cd ~/.config/nvim/ && ranger'
 
-alias dot-w='cd ~/.dotfiles-xord/ && ranger'
+alias dot-x='cd ~/.dotfiles-xorg/ && ranger'
 alias bs='cd ~/.config/bspwm/ && ranger'
 alias sx='cd ~/.config/sxhkd/ && ranger'
 alias po='cd ~/.config/polybar/ && ranger'
 
 alias dot-g='cd ~/.dotfiles-general/ && ranger'
+alias nvcfg='cd ~/.dotfiles-wayland/AeroNvim/.config/nvim/ && ranger'
 alias coding='cd ~/Projects/Coding/ && ranger'
+
 
 ### --------------------------------------------------------------------
 
