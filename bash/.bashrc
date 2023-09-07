@@ -16,11 +16,15 @@ alias dot-x='cd ~/.dotfiles-wayland/ && ranger'
 alias nvm='cd ~/.dotfiles-wayland/AeroNvim/.config/nvim/ && ranger'
 alias hype='cd ~/.config/hypr/ && ranger'
 alias elko='cd ~/.config/eww/ && ranger'
+alias nvcfg='cd ~/.config/nvim/ && ranger'
 
 alias dot-w='cd ~/.dotfiles-xord/ && ranger'
-alias bs='cd ~/.config/bspwm/' && ranger'
-alias sx='cd ~/.config/sxhkd/' && ranger'
-alias po='cd ~/.config/polybar/' && ranger'
+alias bs='cd ~/.config/bspwm/ && ranger'
+alias sx='cd ~/.config/sxhkd/ && ranger'
+alias po='cd ~/.config/polybar/ && ranger'
+alias coding='cd ~/Projects/Coding/ && ranger'
+
+### --------------------------------------------------------------------
 
 # Helper for running C code without a makefile on the shell
 # using Here documents feature.
@@ -33,18 +37,24 @@ go_libs="-lm"
 go_flags="-g -Wall -include ~/Projects/Coding/C/useful-headers/allheaders.h -O3"
 alias go_c="c99 -xc - $go_libs $go_flags"
 
-# Ranger workaround for keeping dir on exit
-function ranger_func {
-    ranger $*
-    local quit_cd_wd_file="$HOME/.ranger_quit_cd_wd"
-    if [ -s "$quit_cd_wd_file" ]; then
-        cd "$(cat $quit_cd_wd_file)"
-        true > "$quit_cd_wd_file"
+# Function to make ranger quit and cd to the last dir
+function ranger_dir {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    )
+    
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
     fi
+    command rm -f -- "$tempfile" 2>/dev/null
 }
 
-alias rn='ranger_func'
-alias coding='cd ~/Projects/Coding/ && rn'
+alias ranger=ranger_dir
 
 ### MISC ### -----------------------------------------------------------
 
@@ -52,5 +62,3 @@ alias coding='cd ~/Projects/Coding/ && rn'
 export LESS="--RAW-CONTROL-CHARS"
 [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
 
-alias ha='nvim ~/Scripts/handy.sh'
-source ~/Scripts/handy.sh
