@@ -22,6 +22,8 @@ alias dot-w='cd ~/.dotfiles-xord/ && ranger'
 alias bs='cd ~/.config/bspwm/ && ranger'
 alias sx='cd ~/.config/sxhkd/ && ranger'
 alias po='cd ~/.config/polybar/ && ranger'
+
+alias dot-g='cd ~/.dotfiles-general/ && ranger'
 alias coding='cd ~/Projects/Coding/ && ranger'
 
 ### --------------------------------------------------------------------
