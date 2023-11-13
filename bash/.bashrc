@@ -22,9 +22,12 @@ alias sx='cd ~/.config/sxhkd/ && ranger'
 alias po='cd ~/.config/polybar/ && ranger'
 
 alias dot-g='cd ~/.dotfiles-general/ && ranger'
-alias nvcfg='cd ~/.dotfiles-wayland/AeroNvim/.config/nvim/ && ranger'
+alias nvcfg='cd ~/Repos/AeroNvim/ && ranger'
 alias coding='cd ~/Projects/Coding/ && ranger'
 
+alias awm='cd ~/.config/awesome/ && ranger'
+
+alias band='bandcamp-dl -ferku'
 
 ### --------------------------------------------------------------------
 
@@ -63,4 +66,7 @@ alias ranger=ranger_dir
 # Color suport for less, man, etc.
 export LESS="--RAW-CONTROL-CHARS"
 [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
+
+
+export EDITOR=nvim
 
